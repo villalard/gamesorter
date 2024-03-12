@@ -77,26 +77,30 @@ function ContentfulContent() {
         padding="10px"
       >
         {page.map((item, index) => (
-          <ProjectCardContainer key={index}>
-            <motion.div whileHover={{ scale: 1.1 }}>
+          <motion.div
+            initial={{ zIndex: 1, opacity: 0.2 }}
+            whileHover={{ scale: 1.1, zIndex: 100, opacity: 1 }}
+          >
+            <ProjectCardContainer key={index}>
               <ProjectCard project={item} onClick={onOpen} />
-            </motion.div>
-            <Modal isOpen={isOpen} onClose={onClose}>
-              <ModalOverlay />
-              <ModalContent>
-                <ModalHeader>Modal Title</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>hi there</ModalBody>
 
-                <ModalFooter>
-                  <Button colorScheme="blue" mr={3} onClick={onClose}>
-                    Close
-                  </Button>
-                  <Button variant="ghost">Secondary Action</Button>
-                </ModalFooter>
-              </ModalContent>
-            </Modal>
-          </ProjectCardContainer>
+              <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Modal Title</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>hi there</ModalBody>
+
+                  <ModalFooter>
+                    <Button colorScheme="blue" mr={3} onClick={onClose}>
+                      Close
+                    </Button>
+                    <Button variant="ghost">Secondary Action</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+            </ProjectCardContainer>
+          </motion.div>
         ))}
       </SimpleGrid>
     </>
