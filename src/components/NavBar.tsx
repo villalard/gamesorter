@@ -10,7 +10,6 @@ function NavBar() {
   return (
     <HStack padding="10px" justifyContent="space-between">
       <Image src={logoImage} width="100px" />
-
       <ColorModeSwitch />
     </HStack>
   );
