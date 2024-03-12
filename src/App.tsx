@@ -1,10 +1,7 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
-import GameGrid from "./components/GameGrid";
-import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import { Platform } from "./hooks/useGames";
-import GameHeading from "./components/GameHeading";
 import ContentfulContent from "./components/ContentfulContent";
 
 export interface GameQuery {
