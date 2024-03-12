@@ -1,4 +1,4 @@
-import { Card, CardBody, Heading, Image } from "@chakra-ui/react";
+import { Card, Image } from "@chakra-ui/react";
 import { Projects } from "./ContentfulContent";
 
 interface Props {

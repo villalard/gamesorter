@@ -13,7 +13,7 @@ import {
 import { useState, useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectCardContainer from "./ProjectCardContainer";
-import GameCardSkeleton from "./GameCardSkeleton";
+import { motion } from "framer-motion";
 
 const query = `{
     portfolioItemCollection {
@@ -78,8 +78,9 @@ function ContentfulContent() {
       >
         {page.map((item, index) => (
           <ProjectCardContainer key={index}>
-            <ProjectCard project={item} onClick={onOpen} />
-
+            <motion.div whileHover={{ scale: 1.1 }}>
+              <ProjectCard project={item} onClick={onOpen} />
+            </motion.div>
             <Modal isOpen={isOpen} onClose={onClose}>
               <ModalOverlay />
               <ModalContent>

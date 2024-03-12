@@ -7,7 +7,7 @@ interface Props {
   onSearch: (searchText: string) => void;
 }
 
-function NavBar({ onSearch }: Props) {
+function NavBar() {
   const { colorMode } = useColorMode();
   const logoImage = colorMode === "dark" ? logo_dark : logo_light;
 
