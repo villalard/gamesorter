@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: 'https://api.rawg.io/api',
+    baseURL: 'https://graphql.contentful.com/content/v1/spaces/' + process.env.VITE_CONTENTFUL_SPACE_ID,
     params: {
-        key: import.meta.env.VITE_RAWG_API_KEY
+        key: 'process.env.CONTENTFUL_API_KEY'
     }
 });
