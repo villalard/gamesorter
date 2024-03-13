@@ -31,6 +31,7 @@ const query = `{
 
 export interface Projects {
   title: string;
+  description: string;
   thumbnail: { url: string };
   video?: { url?: string };
 }
@@ -38,6 +39,7 @@ export interface Projects {
 function ContentfulContent() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [page, setPage] = useState<Projects[]>([]);
+  const [currentProject, setCurrentProject] = useState<Projects | null>(null);
 
   useEffect(() => {
     window
@@ -71,6 +73,21 @@ function ContentfulContent() {
 
   return (
     <>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{currentProject?.title}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>{currentProject?.description}</ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         spacing={0}
@@ -80,25 +97,16 @@ function ContentfulContent() {
           <motion.div
             initial={{ zIndex: 1, opacity: 0.2 }}
             whileHover={{ scale: 1.1, zIndex: 100, opacity: 1 }}
+            key={index}
           >
             <ProjectCardContainer key={index}>
-              <ProjectCard project={item} onClick={onOpen} />
-
-              <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                  <ModalHeader>Modal Title</ModalHeader>
-                  <ModalCloseButton />
-                  <ModalBody>hi there</ModalBody>
-
-                  <ModalFooter>
-                    <Button colorScheme="blue" mr={3} onClick={onClose}>
-                      Close
-                    </Button>
-                    <Button variant="ghost">Secondary Action</Button>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
+              <ProjectCard
+                project={item}
+                onClick={() => {
+                  onOpen();
+                  setCurrentProject(item);
+                }}
+              />
             </ProjectCardContainer>
           </motion.div>
         ))}

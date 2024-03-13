@@ -6,9 +6,9 @@ interface Props {
   onClick: () => void;
 }
 
-const ProjectCard = ({ project }: Props) => {
+const ProjectCard = ({ project, onClick }: Props) => {
   return (
-    <Card>
+    <Card onClick={onClick}>
       <Image src={project.thumbnail.url} alt="{project.title}" />
     </Card>
   );
